@@ -1,5 +1,6 @@
 package com.example.deliveryserver.service.Jwt;
 
+import com.example.deliveryserver.enums.Role;
 import com.example.deliveryserver.service.User.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -65,7 +66,7 @@ public class JwtService {
                 .setClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() +1000 * 60))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60 *60 *24 *30 )) // 1 thang
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }
 

@@ -15,11 +15,12 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     UUID id;
-    String name;
+    String fullName;
     String email;
     String password;
     @CreatedDate

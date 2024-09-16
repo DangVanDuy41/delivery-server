@@ -3,7 +3,7 @@ package com.example.deliveryserver.controller;
 import com.example.deliveryserver.DTO.ApiResponse;
 import com.example.deliveryserver.DTO.UserDTO;
 import com.example.deliveryserver.entity.User;
-import com.example.deliveryserver.mapDTO.UserMapper;
+import com.example.deliveryserver.mapper.UserMapper;
 import com.example.deliveryserver.service.User.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.example.deliveryserver.mapDTO;
+package com.example.deliveryserver.mapper;
 
 import com.example.deliveryserver.DTO.UserDTO;
 import com.example.deliveryserver.DTO.UserProfileDTO;
@@ -13,7 +13,7 @@ public class UserMapper {
         }
         UserDTO userDTO = UserDTO.builder()
                 .id(user.getId())
-                .name(user.getName())
+                .fullName(user.getFullName())
                 .email(user.getEmail())
                 .role(user.getRole())
                 .createdAt(user.getCreatedAt())
@@ -31,4 +31,5 @@ public class UserMapper {
         }
         return userDTO;
     }
+
 }
