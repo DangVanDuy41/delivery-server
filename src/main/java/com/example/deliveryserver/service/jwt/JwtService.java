@@ -1,7 +1,5 @@
-package com.example.deliveryserver.service.Jwt;
+package com.example.deliveryserver.service.jwt;
 
-import com.example.deliveryserver.enums.Role;
-import com.example.deliveryserver.service.User.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

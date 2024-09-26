@@ -44,11 +44,13 @@ class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(author -> {
-                    author
-                            .requestMatchers("/auth/**").permitAll()
-                            .anyRequest().authenticated();
-                })
+                .authorizeHttpRequests(author -> author
+                        .requestMatchers("/api/*/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/*/user/**").hasRole("USER")
+                        .requestMatchers("/api/*/public/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
+                        .anyRequest().authenticated())
+
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFillter(), UsernamePasswordAuthenticationFilter.class)

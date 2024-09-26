@@ -1,7 +1,7 @@
 package com.example.deliveryserver.mapper;
 
-import com.example.deliveryserver.DTO.UserDTO;
-import com.example.deliveryserver.DTO.UserProfileDTO;
+import com.example.deliveryserver.dto.UserDTO;
+import com.example.deliveryserver.dto.UserProfileDTO;
 import com.example.deliveryserver.entity.User;
 import com.example.deliveryserver.entity.UserProfile;
 

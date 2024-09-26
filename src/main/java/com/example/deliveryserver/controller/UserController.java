@@ -1,16 +1,16 @@
 package com.example.deliveryserver.controller;
 
-import com.example.deliveryserver.DTO.ApiResponse;
-import com.example.deliveryserver.DTO.UserDTO;
+import com.example.deliveryserver.dto.ApiResponse;
+import com.example.deliveryserver.dto.UserDTO;
 import com.example.deliveryserver.entity.User;
 import com.example.deliveryserver.mapper.UserMapper;
-import com.example.deliveryserver.service.User.UserService;
+import com.example.deliveryserver.service.user.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/user")
@@ -23,11 +23,11 @@ public class UserController {
     }
 
     @GetMapping
-    public ApiResponse<?> listUser() {
+    public ApiResponse<List<UserDTO>> listUser() {
         List<User> userList = userService.getList();
         List<UserDTO> userDTOS = userList.stream()
                 .map(UserMapper::userToUserDTO)
-                .collect(Collectors.toList());
+                .toList();
 
         return ApiResponse.<List<UserDTO>>builder()
                 .time(new Date())

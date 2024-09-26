@@ -1,13 +1,12 @@
 package com.example.deliveryserver.entity;
 
 import com.example.deliveryserver.enums.Role;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.annotation.CreatedDate;
-import java.util.UUID;
-import java.util.Date;
+import lombok.experimental.SuperBuilder;
+
 
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -15,18 +14,17 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    UUID id;
+@SuperBuilder
+@Table(name = "users")
+public class User extends  BaseEntity {
     String fullName;
     String email;
     String password;
-    @CreatedDate
-    @Column(updatable = false)
-    Date createdAt = new Date();
+
+    @Enumerated(EnumType.STRING)
     Role role;
     @OneToOne(mappedBy = "user")
     UserProfile userProfile;
+    @OneToOne(mappedBy = "user")
+    Store store;
 }

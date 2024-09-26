@@ -1,13 +1,13 @@
 package com.example.deliveryserver.controller;
-import com.example.deliveryserver.DTO.ApiResponse;
-import com.example.deliveryserver.DTO.AuthDTO;
-import com.example.deliveryserver.DTO.JwtResponse;
-import com.example.deliveryserver.DTO.UserDTO;
+
+import com.example.deliveryserver.dto.ApiResponse;
+import com.example.deliveryserver.dto.AuthDTO;
+import com.example.deliveryserver.dto.JwtResponse;
+import com.example.deliveryserver.dto.UserDTO;
 import com.example.deliveryserver.entity.User;
 import com.example.deliveryserver.enums.Role;
-import com.example.deliveryserver.service.Jwt.JwtService;
-import com.example.deliveryserver.service.User.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.deliveryserver.service.jwt.JwtService;
+import com.example.deliveryserver.service.user.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,16 +24,29 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    @Autowired
-    private JwtService jwtService;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+
+    private final AuthenticationManager authenticationManager;
+
+
+    private final UserService userService;
+
+    public AuthController(
+            JwtService jwtService,
+            AuthenticationManager authenticationManager,
+            UserService userService,
+            PasswordEncoder passwordEncoder
+    ) {
+
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(@RequestBody AuthDTO authRequest) {
@@ -60,6 +73,7 @@ public class AuthController {
     @PostMapping("/register")
     public ApiResponse<Boolean> register(@RequestBody UserDTO userRequest) {
         User userRegister = User.builder()
+
                 .email(userRequest.getEmail())
                 .password(passwordEncoder.encode(userRequest.getPassword()))
                 .createdAt(new Date())
@@ -67,7 +81,7 @@ public class AuthController {
                 .role(Role.ROLE_USER)
                 .build();
         User user = userService.saveOrUpdate(userRegister);
-        Boolean result = user !=null;
+        Boolean result = user != null;
         return ApiResponse.<Boolean>builder().data(result).time(new Date()).build();
     }
 }

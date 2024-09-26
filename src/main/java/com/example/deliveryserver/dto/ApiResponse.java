@@ -1,6 +1,4 @@
-package com.example.deliveryserver.DTO;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
+package com.example.deliveryserver.dto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,8 +1,7 @@
 package com.example.deliveryserver.utils;
 
 import com.example.deliveryserver.entity.User;
-import com.example.deliveryserver.repository.UserRepository;
-import com.example.deliveryserver.service.User.UserService;
+import com.example.deliveryserver.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

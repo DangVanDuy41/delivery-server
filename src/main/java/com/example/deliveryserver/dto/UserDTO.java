@@ -1,4 +1,4 @@
-package com.example.deliveryserver.DTO;
+package com.example.deliveryserver.dto;
 
 
 import com.example.deliveryserver.enums.Role;

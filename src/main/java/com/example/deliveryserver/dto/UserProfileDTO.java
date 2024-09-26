@@ -1,6 +1,5 @@
-package com.example.deliveryserver.DTO;
+package com.example.deliveryserver.dto;
 
-import com.example.deliveryserver.entity.User;
 import lombok.*;
 
 import java.util.UUID;

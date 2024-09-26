@@ -1,6 +1,6 @@
 package com.example.deliveryserver.filler;
 
-import com.example.deliveryserver.service.Jwt.JwtService;
+import com.example.deliveryserver.service.jwt.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
