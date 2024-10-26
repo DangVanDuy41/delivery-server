@@ -1,6 +1,6 @@
 services:
   mysql:
-    image: 'mysql:latest'
+    image: 'mysql:8.0'
     container_name: mysql_container
     environment:
       - MYSQL_DATABASE=deliveryDB
@@ -9,5 +9,20 @@ services:
       - '3306:3306'
     volumes:
       - mysql-data:/var/lib/mysql
+
+  springboot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: delivery-server
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/deliveryDB
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=123
+    ports:
+      - '8080:8080'
+    volumes:
+      - .:/app
+
 volumes:
-      mysql-data:
+  mysql-data:

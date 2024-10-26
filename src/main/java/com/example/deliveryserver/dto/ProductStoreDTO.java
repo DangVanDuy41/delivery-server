@@ -1,16 +1,19 @@
 package com.example.deliveryserver.dto;
 
 import com.example.deliveryserver.entity.Product;
-import lombok.*;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+import java.util.List;
 import java.util.UUID;
 
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
 @Setter
-public class ProductDTO {
+@Getter
+@NoArgsConstructor
+public class ProductStoreDTO {
     UUID id;
     String name;
     String image;
@@ -18,8 +21,10 @@ public class ProductDTO {
     UUID categoryId;
     Double price;
     Double rating;
+    StoreOfProductDTO store ;
+    List<ReviewDTO> reviews;
 
-    public ProductDTO(Product product, Double price, Double rating){
+    public  ProductStoreDTO(Product product, Double price, Double rating, UUID storeId,String storeName){
         this.id = product.getId();
         this.image = product.getImage();
         this.name = product.getName();
@@ -27,5 +32,6 @@ public class ProductDTO {
         this.description= product.getDescription();
         this.price = price;
         this.rating = rating;
+        this.store = new StoreOfProductDTO(storeId,storeName);
     }
 }

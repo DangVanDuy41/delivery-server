@@ -17,10 +17,11 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Table(name = "users")
 public class User extends  BaseEntity {
+
     String fullName;
     String email;
     String password;
-
+    String avatar;
     @Enumerated(EnumType.STRING)
     Role role;
     @OneToOne(mappedBy = "user")

@@ -21,6 +21,5 @@ public class UserDTO {
     String password;
     Date createdAt ;
     Role role;
-
     UserProfileDTO profile;
 }
